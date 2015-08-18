@@ -6,10 +6,12 @@
 #include "ofMain.h"
 
 
-#define POWER_ON "* 0 IR 001\r"
-#define POWER_OFF "* 0 IR 002\r"
-#define COMMAND_LENGTH 13
-#define BAUD 4800
+#define POWER_ON "VXXS0001\r"
+#define POWER_OFF "VXXS0002\r"
+#define SYSTEM_STATUS "VXXS0007\r"
+
+#define COMMAND_LENGTH 10
+#define BAUD 9600
 
 class ofxVivatekProjector : public ofSerial {
     public:
@@ -20,6 +22,7 @@ class ofxVivatekProjector : public ofSerial {
     
         void turnProjectorOn();
         void turnProjectorOff();
+        string getProjectorStatus();
     
     protected:
     
