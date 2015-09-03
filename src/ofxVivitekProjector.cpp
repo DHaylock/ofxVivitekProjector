@@ -45,6 +45,7 @@ bool ofxVivitekProjector::doCommand(const char *command, unsigned int command_le
         free_reply = true;
         reply_size = 1024;
         reply = (unsigned char*)malloc(reply_size);
+        memset(reply, 0, reply_size);
     
     } else if(reply_size == 0) {
         cout << "Projector reply buffer size cannot be zero!" << endl;
