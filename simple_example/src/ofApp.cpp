@@ -20,7 +20,7 @@ void ofApp::update()
 //--------------------------------------------------------------
 void ofApp::draw()
 {
-    title.drawString("ofxVivatekProjector: Simple", 10, 20);
+    title.drawString("ofxVivitekProjector: Simple", 10, 20);
     if (projector.isConnected()) {
         ofDrawBitmapString("Projector is Connected", 10,50);
     }

@@ -1,12 +1,12 @@
 //--------------------------------------------------------------
-//* Name: ofxVivatekProjector.cpp
+//* Name: ofxVivitekProjector.cpp
 //* Author: David Haylock, Stewart Morgan
 //* Creation Date: 17-08-2015
 //--------------------------------------------------------------
-#include "ofxVivatekProjector.h"
+#include "ofxVivitekProjector.h"
 
 //--------------------------------------------------------------
-void ofxVivatekProjector::openConnectionToProjector(string serialName,int baud)
+void ofxVivitekProjector::openConnectionToProjector(string serialName,int baud)
 {
     currentSerialName = serialName;
     currentBaud = baud;
@@ -14,14 +14,14 @@ void ofxVivatekProjector::openConnectionToProjector(string serialName,int baud)
     projectorPort.setup(serialName, baud);
 }
 //--------------------------------------------------------------
-void ofxVivatekProjector::close()
+void ofxVivitekProjector::close()
 {
     projectorPort.flush();
     projectorPort.drain();
     projectorPort.close();
 }
 //--------------------------------------------------------------
-void ofxVivatekProjector::reconnect() {
+void ofxVivitekProjector::reconnect() {
     if(projectorPort.isInitialized()) {
         cout << "Reconnecting to projector..." << endl;
         projectorPort.close();
@@ -29,12 +29,12 @@ void ofxVivatekProjector::reconnect() {
     }
 }
 //--------------------------------------------------------------
-bool ofxVivatekProjector::isConnected()
+bool ofxVivitekProjector::isConnected()
 {
     return projectorPort.isInitialized();
 }
 //--------------------------------------------------------------
-bool ofxVivatekProjector::doCommand(const char *command, unsigned int command_length, unsigned char *reply, unsigned int reply_size)
+bool ofxVivitekProjector::doCommand(const char *command, unsigned int command_length, unsigned char *reply, unsigned int reply_size)
 {
     bool            free_reply = false;
     bool            return_value = false;
@@ -105,7 +105,7 @@ bool ofxVivatekProjector::doCommand(const char *command, unsigned int command_le
     return false;
 }
 //--------------------------------------------------------------
-bool ofxVivatekProjector::setProjectionMode(int mode)
+bool ofxVivitekProjector::setProjectionMode(int mode)
 {
     switch(mode) {
         case 0:
@@ -130,33 +130,33 @@ bool ofxVivatekProjector::setProjectionMode(int mode)
     }
 }
 //--------------------------------------------------------------
-bool ofxVivatekProjector::resetProjector()
+bool ofxVivitekProjector::resetProjector()
 {
     cout << "Projector is resetting..." << endl;
     return doCommand(COMMAND_SYSTEM_RESET, sizeof(COMMAND_SYSTEM_RESET));
 }
 
 //--------------------------------------------------------------
-bool ofxVivatekProjector::resyncProjector()
+bool ofxVivitekProjector::resyncProjector()
 {
     cout << "Projector is resyncing..." << endl;
     return doCommand(COMMAND_RESYNC, sizeof(COMMAND_RESYNC));
 }
 
 //--------------------------------------------------------------
-bool ofxVivatekProjector::turnProjectorOn()
+bool ofxVivitekProjector::turnProjectorOn()
 {
     cout << "Projector is Turning On..." << endl;
     return doCommand(COMMAND_POWER_ON, sizeof(COMMAND_POWER_ON));
 }
 //--------------------------------------------------------------
-bool ofxVivatekProjector::turnProjectorOff()
+bool ofxVivitekProjector::turnProjectorOff()
 {
     cout << "Projector is Turning Off..." << endl;
     return doCommand(COMMAND_POWER_OFF, sizeof(COMMAND_POWER_OFF));
 }
 //--------------------------------------------------------------
-string ofxVivatekProjector::getProjectorStatus()
+string ofxVivitekProjector::getProjectorStatus()
 {
     cout << "Getting System Status..." << endl;
     unsigned char reply[1024];
@@ -166,7 +166,7 @@ string ofxVivatekProjector::getProjectorStatus()
     return "";
 }
 //--------------------------------------------------------------
-int ofxVivatekProjector::getLampHours()
+int ofxVivitekProjector::getLampHours()
 {
     cout << "Getting lmap-hours..." << endl;
     unsigned char reply[1024];

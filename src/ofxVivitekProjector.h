@@ -1,5 +1,5 @@
 //--------------------------------------------------------------
-//* Name: ofxVivatekProjector.h
+//* Name: ofxVivitekProjector.h
 //* Author: David Haylock, Stewart Morgan
 //* Creation Date: 17-08-2015
 //--------------------------------------------------------------
@@ -26,7 +26,7 @@
 
 #define BAUD 9600
 
-class ofxVivatekProjector {
+class ofxVivitekProjector {
     public:
         void openConnectionToProjector(string serialName,int baud = BAUD);
         void close();

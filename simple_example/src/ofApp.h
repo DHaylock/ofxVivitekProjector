@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxVivatekProjector.h"
+#include "ofxVivitekProjector.h"
 
 class ofApp : public ofBaseApp{
 
@@ -14,6 +14,6 @@ class ofApp : public ofBaseApp{
 		void keyPressed(int key);
 		void keyReleased(int key);
     
-        ofxVivatekProjector projector;
+        ofxVivitekProjector projector;
         ofTrueTypeFont title;
 };
