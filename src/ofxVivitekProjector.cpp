@@ -131,6 +131,33 @@ bool ofxVivitekProjector::setProjectionMode(int mode)
     }
 }
 //--------------------------------------------------------------
+bool ofxVivitekProjector::setProjectionAspect(int mode)
+{
+    switch(mode) {
+        case 0:
+            cout << "Projection is Fill.." << endl;
+            return doCommand(COMMAND_SET_ASPECT_FILL, sizeof(COMMAND_SET_ASPECT_FILL));
+            
+        case 1:
+            cout << "Projection is 4:3..." << endl;
+            return doCommand(COMMAND_SET_ASPECT_4_3 , sizeof(COMMAND_SET_ASPECT_4_3));
+            
+        case 2:
+            cout << "Projection is 16:9..." << endl;
+            return doCommand(COMMAND_SET_ASPECT_16_9, sizeof(COMMAND_SET_ASPECT_16_9));
+            
+        case 3:
+            cout << "Projection is Letterbox..." << endl;
+            return doCommand(COMMAND_SET_ASPECT_LETTERBOX, sizeof(COMMAND_SET_ASPECT_LETTERBOX));
+        case 4:
+            cout << "Projection is Native..." << endl;
+            return doCommand(COMMAND_SET_ASPECT_NATIVE, sizeof(COMMAND_SET_ASPECT_NATIVE));
+        default:
+            cout << "Unknown Aspect!" << endl;
+            return false;
+    }
+}
+//--------------------------------------------------------------
 bool ofxVivitekProjector::resetProjector()
 {
     cout << "Projector is resetting..." << endl;

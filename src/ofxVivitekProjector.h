@@ -21,6 +21,13 @@
 #define COMMAND_MODE_FRONT_CEILING  "V99S03082\r"
 #define COMMAND_MODE_REAR_CEILING   "V99S03083\r"
 
+#define COMMAND_SET_ASPECT_FILL     "V99S03010\r"
+#define COMMAND_SET_ASPECT_4_3      "V99S03011\r"
+#define COMMAND_SET_ASPECT_16_9     "V99S03012\r"
+#define COMMAND_SET_ASPECT_LETTERBOX "V99S03013\r"
+#define COMMAND_SET_ASPECT_NATIVE   "V99S03014\r"
+
+//#define COMMAND_SET_VERTICAL_KEYSTONE "V99G0309\r"
 
 #define NUM_BYTES 1
 
@@ -40,6 +47,7 @@ class ofxVivitekProjector {
         bool turnProjectorOn();
         bool turnProjectorOff();
         bool setProjectionMode(int mode);
+        bool setProjectionAspect(int mode);
     
         string getProjectorStatus();
         int getLampHours();
