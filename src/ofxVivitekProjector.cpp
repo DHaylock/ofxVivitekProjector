@@ -12,6 +12,8 @@ void ofxVivitekProjector::openConnectionToProjector(string serialName,int baud)
     currentBaud = baud;
     projectorPort.listDevices();
     projectorPort.setup(serialName, baud);
+    projectorPort.flush();
+    projectorPort.drain();
 }
 //--------------------------------------------------------------
 void ofxVivitekProjector::close()
@@ -26,6 +28,9 @@ void ofxVivitekProjector::reconnect() {
         cout << "Reconnecting to projector..." << endl;
         projectorPort.close();
         projectorPort.setup(currentSerialName, currentBaud);
+        projectorPort.flush();
+        projectorPort.drain();
+
     }
 }
 //--------------------------------------------------------------
