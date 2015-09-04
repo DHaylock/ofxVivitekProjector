@@ -33,7 +33,7 @@
 
 #define BAUD 9600
 
-class ofxVivitekProjector {
+class ofxVivitekProjector : public ofSerial {
     public:
         void openConnectionToProjector(string serialName,int baud = BAUD);
         void close();
@@ -54,7 +54,7 @@ class ofxVivitekProjector {
     
     protected:
         unsigned char returnValue;
-        ofSerial projectorPort;
+//        ofSerial projectorPort;
         unsigned char	bytesReturned[NUM_BYTES];
         string  messageBuffer;
         string message;

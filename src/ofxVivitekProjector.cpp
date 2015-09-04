@@ -10,33 +10,33 @@ void ofxVivitekProjector::openConnectionToProjector(string serialName,int baud)
 {
     currentSerialName = serialName;
     currentBaud = baud;
-    projectorPort.listDevices();
-    projectorPort.setup(serialName, baud);
-    projectorPort.flush();
-    projectorPort.drain();
+    ofSerial::listDevices();
+    ofSerial::setup(serialName, baud);
+    ofSerial::flush();
+    ofSerial::drain();
 }
 //--------------------------------------------------------------
 void ofxVivitekProjector::close()
 {
-    projectorPort.flush();
-    projectorPort.drain();
-    projectorPort.close();
+    ofSerial::flush();
+    ofSerial::drain();
+    ofSerial::close();
 }
 //--------------------------------------------------------------
 void ofxVivitekProjector::reconnect() {
-    if(projectorPort.isInitialized()) {
+    if(ofSerial::isInitialized()) {
         cout << "Reconnecting to projector..." << endl;
-        projectorPort.close();
-        projectorPort.setup(currentSerialName, currentBaud);
-        projectorPort.flush();
-        projectorPort.drain();
+        ofSerial::close();
+        ofSerial::setup(currentSerialName, currentBaud);
+        ofSerial::flush();
+        ofSerial::drain();
 
     }
 }
 //--------------------------------------------------------------
 bool ofxVivitekProjector::isConnected()
 {
-    return projectorPort.isInitialized();
+    return ofSerial::isInitialized();
 }
 //--------------------------------------------------------------
 bool ofxVivitekProjector::doCommand(const char *command, unsigned int command_length, unsigned char *reply, unsigned int reply_size)
@@ -65,13 +65,13 @@ bool ofxVivitekProjector::doCommand(const char *command, unsigned int command_le
     command_length--;
     
     cout << "Sending " << command_length << " bytes to the projector: " << command << endl;
-    projectorPort.writeBytes((unsigned char *)command, command_length);
+    ofSerial::writeBytes((unsigned char *)command, command_length);
 
     // Give the projector a quarter of a second to reply
     usleep(TIMEOUT_STEP_DURATION);
     
     while(timeout != 0) {
-        switch(int byte = projectorPort.readByte()) {
+        switch(int byte = ofSerial::readByte()) {
         
             case OF_SERIAL_NO_DATA:
                 cout << "Projector has no data; waiting (" << timeout << " retries remaining)..." << endl;
@@ -85,7 +85,7 @@ bool ofxVivitekProjector::doCommand(const char *command, unsigned int command_le
 
             case '\r':
                 cout << "Projector replied: " << reply << endl;
-                projectorPort.drain();
+                ofSerial::drain();
                 return_value = (reply_length > 0) && (reply[0] == 'P');
                 if(free_reply) {
                     free(reply);
